@@ -25,7 +25,7 @@ namespace Test_Assert {
   //
   // foreign import assert' :: forall e. String -> Boolean -> Eff (assert :: ASSERT | e) Unit
   //
-  inline auto $assert_prime_(const any& message, const bool success) -> any {
+  inline auto assert_prime_(const any& message, const bool success) -> any {
     return [=]() -> any {
       if (not success) throw runtime_error(message);
       return Prelude::unit;
