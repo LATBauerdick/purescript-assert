@@ -20,31 +20,35 @@
 namespace Test_Assert {
   using namespace PureScript;
 
-  // | Throws a runtime exception with the specified message when the boolean
-  // | value is false.
-  //
-  // foreign import assert' :: forall e. String -> Boolean -> Eff (assert :: ASSERT | e) Unit
+  // foreign import assert'
+  //   :: forall e
+  //    . String
+  //   -> Boolean
+  //   -> Eff (assert :: ASSERT | e) Unit
   //
   inline auto assert_prime_(const any& message, const bool success) -> any {
     return [=]() -> any {
       if (not success) throw runtime_error(message);
-      return Prelude::unit;
+      return Data_Unit::unit;
     };
   }
 
-  //  foreign import checkThrows :: forall e a. (Unit -> a) -> Eff (assert :: ASSERT | e) Boolean
+  // foreign import checkThrows
+  //   :: forall e a
+  //    . (Unit -> a)
+  //   -> Eff (assert :: ASSERT | e) Boolean
   //
   inline auto checkThrows(const any& f) -> any {
     return [=]() -> any {
       try {
-        f(Prelude::unit);
+        f(Data_Unit::unit);
         return false;
       } catch (std::runtime_error&) {
         return true;
       } catch (std::exception&) {
         throw runtime_error("Threw something other than an Error");
       }
-      return Prelude::unit;
+      return Data_Unit::unit;
     };
   }
 
