@@ -26,7 +26,7 @@ namespace Test_Assert {
   //   -> Boolean
   //   -> Eff (assert :: ASSERT | e) Unit
   //
-  inline auto assert_prime(const any& message, const bool success) -> any {
+  inline auto assert$prime(const any& message, const bool success) -> any {
     return [=]() -> any {
       if (not success) throw runtime_error(message);
       return Data_Unit::unit;
