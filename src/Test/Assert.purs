@@ -6,7 +6,7 @@ module Test.Assert
   , assertThrows'
   ) where
 
-import Control.Monad.Eff (Eff)
+import Control.Monad.Eff (Eff, kind Effect)
 import Control.Monad ((=<<))
 import Data.Unit (Unit)
 
